@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<title>Facturas</title>
+</head>
+<body>
+	<div data-th-insert="fragmentos/header :: header" />
+	
+	<h1 >Facturas</h1>
+	
+	<a class="btn btn-primary btn-sm" href="#" role="button" data-th-href="@{/factura/nueva}">Nueva</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Folio</th>
+				<th>Fecha</th>
+				<th>RUT</th>
+				<th>Razón Social</th>
+				<th>Monto</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-th-each="factura : ${facturas}">
+				<td data-th-text="${factura.id}" />
+				<td data-th-text="${factura.folio}" />
+				<td data-th-text="${factura.fecha}" />
+				<td data-th-text="${factura.proveedor.rut}" />
+				<td data-th-text="${factura.proveedor.razonSocial}" />
+				<td data-th-text="${factura.monto}" />
+				<td>
+					<a type="button" class="btn btn-outline-warning btn-sm" data-th-href="@{/factura/editar/{id}(id=${factura.id})}">Editar</a>
+					<a type="button" class="btn btn-outline-danger btn-sm" data-th-href="@{/factura/eliminar/{id}(id=${factura.id})}">Eliminar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
